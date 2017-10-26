@@ -202,6 +202,12 @@ struct blockdev_data {
   long bsz;
 };
 
+// toys/other/chrt.c
+
+struct chrt_data {
+  long pid;
+};
+
 // toys/other/dos2unix.c
 
 struct dos2unix_data {
@@ -448,12 +454,6 @@ struct brctl_data {
     int sockfd;
 };
 
-// toys/pending/chrt.c
-
-struct chrt_data {
-  long pid;
-};
-
 // toys/pending/compress.c
 
 struct compress_data {
@@ -563,7 +563,8 @@ struct dmesg_data {
   long level;
   long size;
 
-  int color;
+  int use_color;
+  struct sysinfo info;
 };
 
 // toys/pending/dumpleases.c
@@ -637,6 +638,12 @@ struct getty_data {
 
 struct groupadd_data {
   long gid;
+};
+
+// toys/pending/gzip.c
+
+struct gzip_data {
+  int level;
 };
 
 // toys/pending/host.c
@@ -1047,7 +1054,6 @@ struct date_data {
   char *setfmt;
   char *showdate;
 
-  char *tz;
   unsigned nano;
 };
 
@@ -1136,6 +1142,7 @@ struct kill_data {
 // toys/posix/ls.c
 
 struct ls_data {
+  long ll;
   char *color;
 
   struct dirtree *files, *singledir;
@@ -1414,6 +1421,7 @@ extern union global_union {
 	struct acpi_data acpi;
 	struct base64_data base64;
 	struct blockdev_data blockdev;
+	struct chrt_data chrt;
 	struct dos2unix_data dos2unix;
 	struct fallocate_data fallocate;
 	struct free_data free;
@@ -1442,7 +1450,6 @@ extern union global_union {
 	struct awk_data awk;
 	struct bootchartd_data bootchartd;
 	struct brctl_data brctl;
-	struct chrt_data chrt;
 	struct compress_data compress;
 	struct crond_data crond;
 	struct crontab_data crontab;
@@ -1460,6 +1467,7 @@ extern union global_union {
 	struct getfattr_data getfattr;
 	struct getty_data getty;
 	struct groupadd_data groupadd;
+	struct gzip_data gzip;
 	struct host_data host;
 	struct iconv_data iconv;
 	struct ip_data ip;

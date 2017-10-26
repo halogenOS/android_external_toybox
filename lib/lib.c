@@ -392,6 +392,15 @@ int unescape(char c)
   return (idx == -1) ? 0 : to[idx];
 }
 
+char *strend(char *str, char *suffix)
+{
+  long a = strlen(str), b = strlen(suffix);
+
+  if (a>b && !strcmp(str += a-b, suffix)) return str;
+
+  return 0;
+}
+
 // If *a starts with b, advance *a past it and return 1, else return 0;
 int strstart(char **a, char *b)
 {
@@ -501,6 +510,16 @@ void msleep(long miliseconds)
   ts.tv_sec = miliseconds/1000;
   ts.tv_nsec = (miliseconds%1000)*1000000;
   nanosleep(&ts, &ts);
+}
+
+// return 1<<x of highest bit set
+int highest_bit(unsigned long l)
+{
+  int i;
+
+  for (i = 0; l; i++) l >>= 1;
+
+  return i-1;
 }
 
 // Inefficient, but deals with unaligned access
