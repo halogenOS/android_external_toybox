@@ -138,7 +138,6 @@ common_SRC_FILES := \
     toys/other/xxd.c \
     toys/other/yes.c \
     toys/pending/awk.c \
-    toys/pending/chrt.c \
     toys/pending/dd.c \
     toys/pending/diff.c \
     toys/pending/dmesg.c \
